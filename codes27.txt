@@ -1,0 +1,240 @@
+ANALYZING AND ANDROID PERMISSIONS AND MOBILE TRAFFIC
+
+open android studio
+select projects
+ ---more actions
+---- virtual device manager
+select
+pixel9
+
+open settings
+
+network and internet
+select and click edit
+proxy hostname as 10.0.2.2
+and 8080 proxy port
+save
+
+in settings 
+apps
+
+all apps
+calendar 
+permission
+allow
+
+Now open burp suite
+click proxy
+click proxy settings
+proxy listeners
+add
+8080
+all interfaces
+ok
+select 8080
+
+in mobile(Avd) open chrome
+search example.com
+
+o/p site cant be reached
+
+in burp suite
+http history
+
+google.com 
+click that google.com
+and check request and response
+
+Now  click proxy settings
+click import / export CA certificate
+
+select certificate in der format
+next save it as burp.der
+
+certificate was successfully exported
+
+click done
+in downloads check for burp.der
+click that
+install certificate
+ok
+local machine
+click next
+place all ceritificates in the following store 
+and browse
+trusted root certification authorities 
+certificate store selected by user 
+click finish
+ 
+now in mobile
+open settings 
+security and privacy
+more security and privacy
+encryption and credentials
+
+CA certificate
+burp.der
+now open in  chrome browser
+visit any website
+
+now open burp suite http history
+check req and response
+===================================================================================================================
+
+TESTING IOT DEVICE SECURITY (DEFAULT PASSWORDS & OPEN PORTS)
+
+open docker desktop
+and open the command prompt and type
+docker run -d -p 8090:3000 --name juiceshop bkimminich/juice-shop
+
+now open chrome and type http://localhost:8090
+it will open juice shop page
+now open 
+command prompt and type ipconfig
+
+and open kali linux
+open terminal and type nmap localhost
+and nmap -sV paste the ipv4 address
+
+and now open the juice shop 
+click account and login
+email admin@juice-sh.op
+password admin123
+now right click inspect go to network tabs and fetch/XHR
+===================================================================================================================
+CREATING AND ANALYZING DISK IMAGES WITH FTK IMAGES
+
+open kali linux and type these commands in kali linux
+echo "Cybersecurity labevidence" >evidence.txt
+ls
+lsblk
+sudo apt install dc3dd
+dc3dd --help
+dd if=/dev/zero of=practice_disk.dd bs=1M count=100
+mkfs.ext4  practise_disk.dd
+ls -lh practice_disk_image.dd
+sudo autopsy
+
+copy url and open in firefox
+click newcase
+casename CyberForensiclab
+description creating a new forensice investigation
+
+investigationanme admin
+click new case
+click add host
+click add image
+add image file
+location /home/kmit/practise_disk.dd
+select type partition
+next
+image file details ---> calculate hash value for this image
+click add
+click ok
+clcik  analyze
+click  file analysis key word search that all top menu
+========================================================================================
+LOG FILE ANALYSIS FOR INCIDENT DETECTION LAB
+
+open kali linux and open terminal
+cd /var/log
+ls
+last
+sudo last
+journalctl | less #press q
+journalctl | grep "Failed"
+journalctl | grep ssh
+journalctl | grep -i error
+cd /var/log/apache2
+ls
+sudo less access.log
+grep "404" /var/log/apache2/access.log
+less /var/log/dpkg.log
+sudo journalctl -f
+# (Press Ctrl + C to stop)
+sudo apt update
+sudo apt upgrade -y
+sudo apt install openssh-server -y
+sudo service ssh start
+ip a
+# STEP 11: Simulate attack (enter wrong password multiple times)
+ssh fakeuser@localhost
+# OR
+ssh kali@localhost (recommended)
+then enter wrong password 
+journalctl | grep "Failed password"
+journalctl | grep "Failed password" | awk '{print $11}'
+journalctl | grep "Failed password" | awk '{print $11}' | sort | uniq -c | sort -nr
+==========================================================================================
+NETWORK FORENSICS WITH WIRESHARK: Traffic analysis
+open kali terminal 
+wireshark &
+select eth0
+open firefox ->open youtube-> come to wiresharp u can see
+Sort using below commands: 
+tcp
+http
+ip.addr==10.180.29.234
+ip.src ==10.180.29.234 right click -->follow- -> tcp stream 
+open terminal
+nmap -sS  <ur ip address >
+In filter:
+tcp.flags.syn == 1 && tcp.flags.ack == 0
+in wireshark Go to Statistics->Capture File Properties
+       In wireshark Go To Statistics->Resolved Address 
+Go to Statistics-> Protocol Hierarchy Statistics 
+Go to Statistics->Conversations 
+Statistics-> Packet Length 
+Statistics-> End Points 
+Statistics-> I/O Graphs 
+
+===================================================================================================================PRIVACY AUDIT OF POPULAR APPS / WEBSITES AND DATA BRANCH CASE STUDY ANALYSIS
+ Privacy audit using facebook and whatsapp
+open kali linux
+sudo apt update
+sudo apt install nodejs npm -y
+sudo npm install -g nativefier
+nativefier https://web.whatsapp.com
+cd whatsappweb-linux-x64 (paste path from above or file manager)
+./WhatsAppWeb 
+use file manager and open WhatsAppWeb
+scan qr code using mobile
+open browser(firefox) in kali
+got to https://reports.exodus-privacy.eu.org
+search whatsapp
+wireshark
+eth0
+start capture
+send messages,images,chats
+use files tls,dns
+open facebook
+start burpsuite
+settings==network manual deploy
+intercept ON
+reload facebook
+press f12 network tab
+================================================================================
+conducting a security audit and risk assesments
+step 1
+windows + R type msinfo32 check os version and system type
+step 2 --> open settings -->windows update click check for updates
+step 3 --> search windows defender firewall --> properties --> off-> apply-> ok
+step 4
+open settings and go to privacy and security then click on windows security and
+go to virus and threat protection 
+step 5
+settings --> accounts--> sign in options 
+step 6
+settings -> apps --> installed apps
+
+step 7
+control + shift + esc --> go to startup apps
+step 8
+settings --> network and internet --> click on properties
+
+step 9
+open settings in chrome/edge --> privacy and security --> search for safe browsing --> enhanced protection
+step 10
+settings --> accounts --> windows backup  
+step 11
+Risk assessment table
