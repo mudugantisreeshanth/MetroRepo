@@ -1,0 +1,121 @@
+Week-1:
+Task-1:
+create ec2 instance :
+ubuntu, .ppk, allow all check boxes, change anywhere->my ip, launch
+open putty-> host:ubuntu@ipv4_public
+ssh->auth->credentials->private file->.ppk file-> open-> connect once
+now: whoami, echo "hi" >text.txt, ls, cat text.txt
+---------------------------------------------------------------------------
+Task-2:
+Launch instance same as above but .pem 
+open puttygen->load->.ppm->save private key-> yes->week1putty->save
+now open putty same do as tast-1
+
+=============================================================================================
+
+Week-3:
+1) Create two EC2 instances all same, but az=1a and az=1b
+   Add security group for both: NFS, anywhere
+2)Now create EFS
+3)Open both using connect options
+commands:
+sudo su
+mkdir efs
+yum install -y amazon-efs-utils
+ls
+4) Now attach efs-> copy that command after clicking attatch
+5) Now in one instance: cd efs-> echo ""...
+6) Now in second one: cd efs-> ls-> cat text.txt
+ =================================================================================================
+
+ Week-4:
+  task:1
+  1) create bucket-> acls enabled-> block all(uncheck) -> ack->create bucket
+  2) permissions->acl->edit->Everyone(read)
+  3)upload file 
+  4) click on object -> permissions -> acl edit-> two reads-> object url -> incogito-> image
+
+  task-2:
+  s3 versioning->in properties
+
+  task-3:
+  CRR:
+  1)Two buckets
+  2) In source bucket-> managment-> craete replication-> apply to all-> LabRole
+  3)upload in source-> check in destination
+
+  task-4:
+  Static web hosting:
+  1)create two files: index.html, error.html
+  2) Upload in bucket-> permisssions-> read and read
+  3) Bucket->properties-> static web-> enable-> index.html, error.html->done
+  4) Go last in properyies last link, open
+=======================================================================================
+
+Week-5: VSGRSE, use linux, one security grp
+1) VPC creation: vpc only-> ipv4 cidr->  10.0.0.0/16->create
+2) Subnets :
+    public subnet-> Az:1a-> CIDR: 10.0.1.0/24-> create
+    private subnet-> AZ:1a-> 10.0.2.0/24-> create
+3) Internet Gateway:
+  attatch to vpc ->  attach IG
+4) Route Tables:
+  1)public-> vpc-> create
+  edit routes-> add routes-> 
+      Destination:0.0.0.0/0
+      Target: IG
+      save
+      actions-> Edit subnet associations-> choose
+  2) Private-> VPC-> create
+      actions-> Edit subnet associations-> choose
+5) Go to public subnet-> actions-> edit subnet settings-> enable auto-assign-> save
+6) Create Security -> VPC-> Desc: Allows SSH
+    Inbound Rules:
+    http-> anywhere
+    https->anywhere
+    ssh-> my ip
+7)Create two instances:
+    For both: VPC, subnet-> manavi, select security grp
+8)Open two connects: 
+ public: ping google.com
+ private: no access
+=============================================================================
+ Week-6: VSGRSE, use ubuntu, two security grps
+1) VPC creation: vpc only-> ipv4 cidr->  10.0.0.0/16->create
+2) Subnets :
+    public subnet-> Az:1a-> CIDR: 10.0.1.0/24-> create
+    private subnet-> AZ:1a-> 10.0.2.0/24-> create
+3) Internet Gateway:
+  attatch to vpc ->  attach IG
+4) Route Tables:
+  1)public-> vpc-> create
+  edit routes-> add routes-> 
+      Destination:0.0.0.0/0
+      Target: IG
+      save
+      actions-> Edit subnet associations-> choose
+  2) Private-> VPC-> create
+      actions-> Edit subnet associations-> choose
+5) Go to public subnet-> actions-> edit subnet settings-> enable auto-assign-> save
+6)Create Two security grps:
+ 1)BastionSg:
+    Desc: Allows SSH
+    Select VPC
+    Inbound rules: SSH->my ip
+    save
+  2)DatabaseSG:
+    Desc:Allows SSH
+    Select VPC
+    Inbound rules: SSH->custom pakkana select bastion
+                   MySQLAurora-> custom pakkana-> 10.0.1.0/24
+
+7) Create Two instances:
+ 1)Mybastion->ubuntu->Network settings-> all public choose-> launch
+ 2)Mydatabase->ubuntu->Network settings-> all private-> launch
+8) bastion instance 
+
+
+
+
+
+=============================================================================================
