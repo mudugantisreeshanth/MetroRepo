@@ -73,9 +73,9 @@ Week-5: VSGRSE, use linux, one security grp
     Inbound Rules:
     http-> anywhere
     https->anywhere
-    ssh-> my ip
+    ssh-> anywhere
 7)Create two instances:
-    For both: VPC, subnet-> manavi, select security grp
+    For both: VPC, subnet-> manavi
 8)Open two connects: 
  public: ping google.com
  private: no access
